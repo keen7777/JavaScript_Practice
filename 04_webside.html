@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+// go to inspector(F12), console to check and input anything
+// CH04: JS together with html and css
+
+// html = creates the content
+// css = changes the appearance
+// js = makes it interactive
+
+
+////////////////////////////////////////////////////////////
+//exercise 04:
+//skip, check html and css course
+
+
+<head>
+    <title> example</title>
+    <style>
+        /*this is a comment in css*/
+        .hello_btn {
+            background-color: rgb(211, 231, 224);
+            color: brown;
+            border: none;
+        }
+
+        .yellow_btn {
+            background-color: yellow;
+        }
+
+        .orange_btn {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <!--check html &css course-->
+    <!-- opening and closing tag-->
+    <button title="tooltip" class="hello_btn" onclick="alert('tap this button')">hello</button>
+    <!-- newlines also count as spaces-->
+    <p>a paragraph of <button>~~~</button> text</p>
+    <hr>
+    <p>Adults Plain Cotton T-shirt</p>
+    <p>Price: $7.99</p>
+    <button class="yellow_btn" onclick="alert('Added')">Add to cart</button>
+    <button class="orange_btn" onclick=" console.log('Loading...'); alert('Purchased')">Buy now</button>
+    <script>
+        // comment
+        // inside script using JS comment
+        alert('inside script is js code')
+        console.log(1 + 1);
+    </script>
+</body>
+
+</html>

@@ -1,6 +1,6 @@
 // supersimple.dev/js-basics/
 // go to inspector(F12), console to check and input anything
-// CH01: JS basic, using console
+// CH02: numbers, using console
 
 //final project: supersimple.dev/projects/amazon
 
@@ -25,7 +25,7 @@ Math.floor(4.9)
 
 Math.round((2095+799)*0.1)/100
 
-//exercise 02:
+///////////////////////////exercise 02:
 
 //2a
 1*10 + 3*8 + 1*5
