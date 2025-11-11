@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch06 Booleans </title>
+    <style>
+        /*css*/
+    </style>
+</head>
+
+<body>
+    <!--html -->
+    <h3> Note: Ch06 boolean </h3>
+    <p> 
+        1, === is  equal to; !== not equal to <br>
+        2, == will first convert variables into same type then compare, like 3.0 == '3', is True <br>
+        3, if else statements ;  lazy guard operator &&; default operator || ; also not !<br>
+        4, truthy, falsy value: <br>
+        4-1, falsy: false; 0; ''; NaN (not a number); undefined; null <br>
+        5, ternary operator ? :
+    </p>
+    <hr>
+    <script>
+        // js code
+        console.log('check type of booleans:');
+        console.log(typeof true);
+        console.log(3 < 5);
+        console.log(7 < 5);
+
+        // if
+        if(3 < 5) {
+            console.log('if 3 < 5 is true then print this line');
+        } else {
+            console.log('this line will not run.');
+        }
+
+        let user_age = 0;
+        user_age = prompt('please enter your age')
+
+        if (user_age >= 16 && user_age < 80) {
+            console.log('you can drive!');
+        } else if(user_age >= 80) {
+            console.log('nah, you are too old to drive, grandpa.')
+        } else if(user_age < 16) {
+            console.log('nah, you are too young to drive, kiddo.')
+        }
+
+        if(5) {
+            console.log('5 is truthy');
+        } 
+
+        if(!0) {
+            console.log('0 is falsy');
+        } 
+
+        const res = true ? 'it is truthy' : 'it is falsy'
+        console.log(res);
+
+        if (true) {
+            'it is truthy'
+             console.log('true is truthy');
+        } else {
+            'it is falsy'
+        }
+
+        console.log('guard/default operator:');
+        const message = 5 && 'halo';
+        console.log(message);
+        const currency = 'EUR' || 'USD'
+        console.log(currency);
+
+        // exercise06 ///////////////////////////
+        console.log('ex06: a-c ---------------------------------');
+        let time = 0;
+        let time_message = '';
+        time = prompt('please enter what time it is?(Hour, 0~23)')
+        user_name = prompt('please enter your name')
+        if (time > 6 && time <= 12) {
+            time_message = `Good morning! ${user_name}`
+        } else if(time > 12 && time <= 17) {
+             time_message = `Good afternoon! ${user_name}`
+        } else if(time > 17) {
+             time_message = `Good evening! ${user_name}`
+        }
+        console.log(time_message);
+        console.log('ex06: d-e ---------------------------------');
+        let discount_msg = '';
+        let is_holiday = true;
+
+        if((user_age<=6 || user_age >= 65) && is_holiday){
+            discount_msg = 'Yep, you can use discount.';
+        } else {
+            discount_msg = 'Sorry, no discount';
+        }
+        console.log(discount_msg);
+        console.log('ex06: f-j: coin, guess head and tail, samiliar as rock papaer scissors, skip');
+
+
+
+    </script>
+</body>
+
+</html>

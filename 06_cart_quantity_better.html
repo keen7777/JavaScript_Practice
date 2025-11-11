@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch06 Cart quantity, add checking </title>
+        <style>
+            /*css*/
+        </style>
+</head>
+
+<body>
+    <!--html -->
+    <button  data-add_quantity="0" onclick="
+        console.log(`Show Cart quantity: ${current_quantity}`)
+    "> Show Quantity</button>
+
+    <button data-add_quantity="1"> Add to Cart</button>
+
+    <button data-add_quantity='2'> +2</button>
+
+    <button data-add_quantity='3'> +3</button>
+
+    <button data-add_quantity='4'> +4</button>
+
+    <button data-add_quantity='5'> +5</button>
+
+    <button data-add_quantity='-1'> Remove from Cart</button>
+
+    <button data-add_quantity='-2'> -2</button>
+
+    <button data-add_quantity='-3'> -3</button>
+
+    <button data-add_quantity='0' onclick="
+        current_quantity = 0;
+        console.log(`Cart was reset`);
+        console.log(`Cart quantity: ${current_quantity}`)
+    " > Reset Cart</button>
+
+    <script>
+        // js code
+        // variables
+        const max_quantity = 10;
+        let alert_msg ='';
+        let current_quantity = 0;
+
+        function checkMaxMinQuantity(current_quantity,op) {
+            if (current_quantity+op>= 10) {
+                alert_msg = 'The cart is full';
+            } else if ((current_quantity+op) < 0) {
+                 alert_msg = 'Not enough items in the cart';
+            } else {
+                current_quantity = current_quantity + op;
+                alert_msg = '';
+                console.log(`Cart quantity: ${current_quantity}`)
+            }
+            return current_quantity;
+        }
+
+
+        // binding logic:
+        const buttons = document.querySelectorAll("button");
+        // add events for each button
+        buttons.forEach(button => {
+            button.addEventListener("click", () => {
+                const op_quantity = Number(button.dataset.add_quantity);
+                console.log(`Current op: ${op_quantity}`)
+
+                // check if max-min overshot
+                current_quantity = checkMaxMinQuantity(current_quantity, op_quantity);
+                console.log(`Current Cart quantity: ${current_quantity}`)
+
+                // show alert if overshot
+                if(alert_msg!==''){
+                   alert(alert_msg); 
+                }
+                
+            });
+        });
+
+
+    </script>
+</body>
+
+</html>

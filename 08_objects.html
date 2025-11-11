@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch08 Objects  </title>
+        <style>
+            /*css*/
+        </style>
+</head>
+
+<body>
+    <!--html -->
+    <h3> Note: </h3>
+    <p>
+        What is an <strong> Object</strong>?<br>
+        1,  it groups multiple values together; pack them all in '{}'.<br>
+        1-1, it has property(name) and it's <strong> values (concrete ones with type)</strong>. <br>
+        1-2, which can be access through property <strong> dot</strong> notation, which is convenient <br>
+        1-3, access through property <strong> bracket </strong> notation, when dot doesn't work, eg: dot-name, - can't be process <br>
+        <hr>
+        2, check <a href="https://supersimple.dev/projects/objects/">rock paper scissors with a score record.</a> <br>
+        <hr>
+        3,Built in functions: JSON and localStorage
+    </p>
+
+    <script>
+        // js code
+        const product = {
+            name: 'socks',
+            price: 10
+        }
+        console.log(product);
+        console.log(product.name);
+        console.log(product.price);
+
+        // it can be modified:
+        product.name = 'cotton socks';
+        product.genre = 'clothes';
+        product.newtest = true;
+        console.log(product);
+        delete product.newtest;
+        console.log(product);
+
+        // bracket notation
+        // nested objects: even for functions
+        const product2 = {
+            name: 'shirt',
+            price: 109,
+            'discount-rate': 0.1, 
+            rating: {
+                stars: 4.5,
+                count: 87
+            },
+            fun : function test() {
+                console.log('nested objects, inside functions');
+            }
+        }
+        product2['delivery-time'] = '1 day';
+        console.log(product2);
+        product2.fun(); // called method.
+        console.log(console.log);
+        console.log(typeof (console));
+        console.log(typeof (console.log));
+    </script>
+</body>
+
+</html>

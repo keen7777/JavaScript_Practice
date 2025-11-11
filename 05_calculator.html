@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch05 Calculators </title>
+    <link rel="stylesheet" href="css_files/05_calculator.css">
+</head>
+
+<body>
+    <!--html numbers-->
+    <section class="frame-div">
+        <div class="btn-div"> 
+            <button class="num-btn" onclick="
+                calculation += '1';
+                console.log(calculation);
+                "> 1 </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="num-btn" onclick="
+                calculation += '2';
+                console.log(calculation);
+                "> 2 </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="num-btn" onclick="
+                calculation += '3';
+                console.log(calculation);
+                "> 3 </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="op-btn" onclick="
+                calculation += ' + ';
+                console.log(calculation);
+                "> + </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="num-btn" onclick="
+                calculation += '4';
+                console.log(calculation);
+                "> 4 </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="num-btn" onclick="
+                calculation += '5';
+                console.log(calculation);
+                "> 5 </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="num-btn" onclick="
+                calculation += '6';
+                console.log(calculation);
+                "> 6 </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="op-btn" onclick="
+                calculation += ' - ';
+                console.log(calculation);
+                "> - </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="num-btn" onclick="
+                calculation += '7';
+                console.log(calculation);
+                "> 7 </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="num-btn" onclick="
+                calculation += '8';
+                console.log(calculation);
+                "> 8 </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="num-btn" onclick="
+                calculation += '9';
+                console.log(calculation);
+                "> 9 </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="op-btn" onclick="
+                calculation += ' * ';
+                console.log(calculation);
+                "> * </button>
+        </div>
+
+
+        <div class="btn-div"> 
+            <button class="num-btn" onclick="
+                calculation += '0';
+                console.log(calculation);
+                "> 0 </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="dot-btn" onclick="
+                calculation += '.';
+                console.log(calculation);
+                "> . </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="eq-btn" onclick="
+                calculation= eval(calculation);
+                console.log(calculation);
+                "> = </button>
+        </div>
+
+        <div class="btn-div"> 
+            <button class="op-btn" onclick="
+                calculation += '/';
+                console.log(calculation);
+                "> / </button>
+        </div>
+
+        <div class="btn-div">
+            <button class="clear-btn" onclick="
+                calculation = '';
+                console.log(calculation);
+                "> Clear </button>
+        </div>
+        
+
+    </section>
+    <script>
+        // js code
+        let calculation = "";
+    </script>
+</body>
+
+</html>

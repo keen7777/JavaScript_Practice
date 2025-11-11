@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title> Ch05 Cart quantity /title>
+    <title> Ch05 Cart quantity </title>
         <style>
             /*css*/
         </style>
@@ -18,12 +18,59 @@
         cart_quantity ++;
         console.log(`Cart quantity: ${cart_quantity}`)
     "> Add to Cart</button>
-    <button> +2</button>
-    <button> +3</button>
-    <button> Reset Cart</button>
+
+    <button onclick="
+        cart_quantity = cart_quantity + 2;
+        // cart_quantity += 2; same, just a short cut
+        console.log(`Cart quantity: ${cart_quantity}`)
+    "> +2</button>
+
+    <button onclick="
+        cart_quantity = cart_quantity + 3;
+        console.log(`Cart quantity: ${cart_quantity}`)
+    " > +3</button>
+
+    <button onclick="
+        cart_quantity = cart_quantity + 4;
+        // cart_quantity += 4; same, just a short cut
+        console.log(`Cart quantity: ${cart_quantity}`)
+    "> +4</button>
+
+    <button onclick="
+        cart_quantity = cart_quantity + 5;
+        console.log(`Cart quantity: ${cart_quantity}`)
+    " > +5</button>
+
+    <button onclick="
+        cart_quantity --;
+        console.log(`Cart quantity: ${cart_quantity}`)
+    "> Remove from Cart</button>
+
+    <button onclick="
+        cart_quantity = cart_quantity - 2;
+        console.log(`Cart quantity: ${cart_quantity}`)
+    "> -2</button>
+
+    <button onclick="
+        cart_quantity = cart_quantity - 3;
+        console.log(`Cart quantity: ${cart_quantity}`)
+    " > -3</button>
+
+
+
+    <button onclick="
+        cart_quantity = 0;
+        console.log(`Cart was reset`);
+        console.log(`Cart quantity: ${cart_quantity}`)
+    " > Reset Cart</button>
 
     <script>
         // js code
+        // Naming standard: ways that we could use to name the variables
+        // camelCase
+        // PascalCase
+        // kabab-case, but here in JS,- is minus
+        // snake_case, that's what i use
         let cart_quantity = 0;
     </script>
 </body>

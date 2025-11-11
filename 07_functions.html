@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch07 Functions </title>
+    <style>
+        /*css*/
+    </style>
+</head>
+
+<body>
+    <!--html -->
+    <h3> Note: </h3>
+    <p>
+        Functions <strong> </strong><br>
+        1, let us reuse code <br>
+        1-1, $ and _ are also allowed in function names <br>
+        1-2, function only allow us to return one variable, but we could pack a lot of thing together or make a variable
+        global. <br>
+        1-3, be careful with the scoops.<br>
+        1-4, if do calculation with a number and undefined, we get NaN<br>
+        1-5. parameter can have default values.<br>
+        <hr>
+         <br>
+    </p>
+
+    <script>
+        // js code
+        // for function name we could also use $
+        function function1(params) {
+            console.log(2 + 2);
+            console.log('hello');
+        }
+
+        function1();
+
+        function calculateTax(cost, tax_rate = 0.05) {
+            return cost * tax_rate;
+        }
+
+        console.log(`the tax is ${calculateTax(100, 0.1)}`);
+        console.log(`the tax is ${calculateTax(1000)}`);
+        // exercise07 ///////////////////////////
+        console.log('ex07: a-c ---------------------------------');
+
+        function greeting(name) {
+            if (name !== undefined) {
+                console.log(`Hello, ${name}`);
+            } else {
+                console.log(`Hello, stranger.`);
+            }
+        }
+
+        greeting('Pascal');
+        greeting();
+
+        console.log('ex07: d-f ---------------------------------');
+
+        function convertTemperature(degrees, unit) {
+            let converted_temp = 0;
+            let converted_unit = '';
+            if (unit === 'C') {
+                converted_temp = (degrees * 9 / 5) + 32;
+                converted_unit = 'F';
+            } else if (unit === 'F') {
+                converted_temp = (degrees - 32) * 5 / 9;
+                converted_unit = 'C';
+            } else {
+                console.log('please enter valid argument, degrees is a number, unit is either C or F.');
+            }
+            return converted_temp + converted_unit;
+        }
+
+        console.log(convertTemperature(25, 'C'));
+        console.log(convertTemperature(86, 'F'));
+
+        console.log('ex07: g-i ---------------------------------');
+        function convertLength(length, from, to) {
+            let converted_length = 0;
+            let converted_unit = '';
+            if (from === to && (from === 'km' || from === 'miles' || from === 'ft')) {
+                converted_length = length;
+                converted_unit = to;
+            } else if (from === 'km' && to === 'miles') {
+                converted_length = length / 1.6;
+                converted_unit = to;
+            } else if (from === 'miles' && to === 'km') {
+                converted_length = length * 1.6;
+                converted_unit = to;
+            } else if (from === 'miles' && to === 'ft') {
+                converted_length = length * 5280;
+                converted_unit = to;
+            } else if (from === 'ft' && to === 'miles') {
+                converted_length = length / 5280;
+                converted_unit = to;
+            } else if (from === 'km' && to === 'ft') {
+                converted_length = length * 3281;
+                converted_unit = to;
+            } else if (from === 'ft' && to === 'km') {
+                converted_length = length / 3281;
+                converted_unit = to;
+            }
+            else {
+                console.log(`please enter valid argument, length is a number, unit is either km, miles, or ft. not ${from}`);
+            }
+            return converted_length + ' '+ converted_unit;
+        }
+
+        console.log(convertLength(50, 'miles','km'));
+        console.log(convertLength(32, 'km','miles'));
+        console.log(convertLength(50, 'km','km'));
+
+        console.log(convertLength(5, 'miles','ft'));
+        console.log(convertLength(5, 'km','ft'));
+        console.log(convertLength(50, 'lbs','lbs'));
+        console.log('ex07: j-l: better cart quantity, already done in 06 better version, so skip ---------------------------------');
+
+    </script>
+</body>
+
+</html>

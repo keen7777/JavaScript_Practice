@@ -1,0 +1,30 @@
+.frame-div{
+    display: grid;
+    grid-template-columns: 60px 60px 60px 60px;
+    background-color: black;
+}
+
+.btn-div {
+    margin: 4px;
+}
+.num-btn, .dot-btn, .eq-btn,.clear-btn {
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    border: 0;
+    background-color: rgb(47, 46, 46);
+    padding: 6px;
+    color: white;
+    font-size: 16px;
+}
+
+.op-btn {
+    border-radius: 100%;
+    width: 50px;
+    height: 50px;
+    border: 0;
+    background-color: orange;
+    padding: 6px;
+    color: white;
+    font-size: 16px;
+}

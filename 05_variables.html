@@ -17,8 +17,9 @@
         let calculation_1 = 2+2;
         console.log(calculation_1+3);
 
-        let message_1 = 'halo';
+        const message_1 = 'halo';
         console.log(message_1);
+        console.log(typeof message_1);
 
         variable_1 = 5;
         console.log(variable_1);
@@ -26,6 +27,25 @@
         // re-assign won't affect earlier log.
         variable_1 = variable_1 + 10;
         console.log(variable_1);
+
+        // constant, won't change at all 
+        //!!!!! Best practice, use const by default, only let when need to modify variables later.
+        const variable_2 = 100; 
+
+        // we can also see var in old JS code, but not any more
+        var variable_3 = 42;
+        console.log(typeof variable_2);
+        // exercise05 ///////////////////////////
+        console.log('ex05---------------------------------');
+        const my_name = 'K';
+        console.log(`My name is ${my_name}`);
+        let cost = 5 + 2 * 3 + 9;
+        console.log(`Cost of food: $${cost}`);
+        let tax = cost/10;
+        console.log(`Tax of food(10%): $${tax}`);
+        let total_cost = cost + tax;
+        console.log(`Total Cost: $${total_cost}`);
+
     </script>
 </body>
 
