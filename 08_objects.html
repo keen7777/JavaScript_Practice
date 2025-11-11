@@ -20,7 +20,12 @@
         <hr>
         2, check <a href="https://supersimple.dev/projects/objects/">rock paper scissors with a score record.</a> <br>
         <hr>
-        3,Built in functions: JSON and localStorage
+        3, Built in functions: JSON <br>
+        3-1, JSON = js object notation: a syntax that similar to JS object but has less features.<br>
+        3-2, json is more universal, more than just in js. easy to use, transfer, store data.<br>
+        3-3, built-in method to convert JS objects to JSON<br>
+        4, Built in functions: localStorage <br>
+        4-1, save the values more permanently,like rps game, after closing page and reopen/refresh it, record is kept.
     </p>
 
     <script>
@@ -61,6 +66,24 @@
         console.log(console.log);
         console.log(typeof (console));
         console.log(typeof (console.log));
+
+        //Json don't support functions, only use ""
+        const product3 = {
+            "name": 'shirt',
+            "price": 109,
+            'discount-rate': 0.1, 
+            "rating": {
+                "stars": 4.5,
+                "count": 87
+            }
+        }
+
+        console.log('built-in method, transfer JS object to JSON(as a string)');
+        // built-in to tranfer JSON
+        console.log(JSON.stringify(product2));
+        console.log('built-in method, use parse to convert backward');
+        const json_string = JSON.stringify(product2);
+        console.log(JSON.parse(json_string));
     </script>
 </body>
 
