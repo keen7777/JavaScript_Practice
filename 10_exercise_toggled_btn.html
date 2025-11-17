@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch10, exercise d-f </title>
+    <style>
+        .btn {
+            background-color: rgb(227, 227, 227);
+            border: none;
+            padding: 10px 16px;
+            border-radius: 10%;
+            cursor: pointer;
+        }
+
+        .is-toggled {
+            background-color: black;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <!--html -->
+    <button class="btn"> Gaming </button>
+    <button class="btn"> Music </button>
+    <button class="btn"> Tech </button>
+
+    <script>
+        // js code
+        function clickToggled(current_btn) {
+            document.querySelectorAll('.btn').forEach(btn => {
+                btn.classList.remove('is-toggled');
+            });
+
+            // adding toggled
+            current_btn.classList.add('is-toggled');
+        }
+
+
+
+
+        // running logic:
+
+        document.body.addEventListener('click', (e) => {
+            const button = e.target.closest('button');
+            // only for buttons.
+            if (!button) {
+                return;
+            }
+            clickToggled(button);
+
+        });
+    </script>
+</body>
+
+</html>

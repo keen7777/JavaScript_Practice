@@ -25,7 +25,14 @@
         3-2, json is more universal, more than just in js. easy to use, transfer, store data.<br>
         3-3, built-in method to convert JS objects to JSON<br>
         4, Built in functions: localStorage <br>
-        4-1, save the values more permanently,like rps game, after closing page and reopen/refresh it, record is kept.
+        4-1, save the values more permanently,like rps game, after closing page and reopen/refresh it, record is kept.<br>
+        4-2, first setItem, (key,obj), then getItem before loading, remember adding <strong> default value</strong>, so after delete object reload won;t throw errors.<br>
+        4-3, stringify ~~~ parse while using JSON.<br>
+        <hr>
+        5, null(intentionally want sth to be empty!) vs undefined(using default value,such as params).<br>
+        6,auto-boxing,string being wrapped as special obj that has methods ,length, upper/lowercase to use. also number. but NOT with null or undefined.<br>
+        7, Objects are references!like a shortcut, so we can't compare objects directly,=== just comparing it's reference. <br>
+        8, shortcuts, property, method...destructuring...
     </p>
 
     <script>
@@ -84,6 +91,78 @@
         console.log('built-in method, use parse to convert backward');
         const json_string = JSON.stringify(product2);
         console.log(JSON.parse(json_string));
+
+        //auto boxing:
+        console.log('hello'.length);
+        console.log('hello'.toUpperCase());
+
+        const product4 = product2;
+        // not a copy, but point to the same address/reference.
+        product4.name = 'check it out!!! reference';
+        console.log(product2);
+
+        //deconstructuring: 2 lines are same. can deconstruct multiple properties
+        // const price = product2.price;
+        const {price} = product2;
+
+        // shortcuts
+        const product5 = {
+            // price: price
+            price,
+            /**
+            method: function function5() {
+                console.log("inside method 5, shortcut and standard way of writting it");
+            }
+             */
+            method() {
+                console.log("inside method 5, shortcut and standard way of writting");
+            }
+        }
+
+        product5.method();
+
+        // exercise08 ///////////////////////////
+        console.log('ex08: a-c ---------------------------------');
+
+        const product6 = {
+            name: 'basketball',
+            price: 2095
+        }
+
+        const product7 = {
+            name: 'basketball',
+            price: 2095
+        }
+        product6.price = product6.price + 500;
+        product6['delivery-time'] = '3 days';
+        console.log(product6);
+
+        console.log('ex08: d-g ---------------------------------');
+
+        function comparePrice(p1, p2) {
+            if(p1.price <= p2.price){
+                return p1;
+            } else {
+                return p2;
+            }
+        }
+        const p = (comparePrice(product3, product6))
+        console.log(`this product is cheaper: ${p.name}`);
+
+        function isSameProduct(p1, p2) {
+            if(p1.price === p2.price && p1.name ===p2.name){
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        const pp = (isSameProduct(product7, product6))
+        console.log(`P6 and p7 are the same product? ${pp}`);
+        console.log('ABC'.toLowerCase());
+        console.log('ABC'.repeat(3));
+
+
     </script>
 </body>
 

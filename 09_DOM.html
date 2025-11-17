@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch09 Document Object Model(dom) </title>
+    <style>
+        /*css*/
+    </style>
+</head>
+
+<body>
+    <!--html -->
+    <h3> Note: </h3>
+    <p>
+        DOM object combine <strong>JS and HTML</strong> together.<br>
+        1, bc we have html inside JS code, <strong>JS and HTML elements = JS objects</strong> <br>
+        1-1, HTML element convert into a JS object <strong>fixed</strong>, <br>
+        1-2, querySelector let use get any element from the page and put it inside JS <br>
+        1-3, every html element has a property .innerHTML to let you control <br>
+        1-4, if we want to use querySelector to select more, then use class= adding a label<br>
+        1-5, <br>
+        <hr>
+        2, how to handle click, keydown, Simon use onclick, onkeydown within the button, but actually using
+        eventlistener to wrap things up would be more efficient <br>
+        3, don't use string for math ,bc of type coercion,plus and minus have been treated differently.<br>
+        4, window project is the brower,<br>
+        5, <strong>onkeydown is only focused on the input frame, not the seperate submit button</strong>
+    </p>
+    <!--html code-->
+    <button> hello</button>
+    <button class="js-btn"> second btn</button>
+    <!--html code exercise 09 !!!!!!!!!!-->
+    <button class="_9a">9a</button>
+    <button class="_9c" onclick="
+    const msg1 = 'You chose: heads';
+    document.querySelector('._9c-1').innerHTML = msg1;
+    ">heads</button>
+    <button class="_9c" onclick="
+    const msg2 = 'You chose: tails';
+    document.querySelector('._9c-1').innerHTML = msg2;
+    ">tails</button>
+    <p class="_9c-1"></p>
+    <input placeholder="write down your name" class="_9d"  onkeydown= "if(event.key=== 'Enter')
+        display();
+    "> 
+    <button onclick="display(); "> Submit </button>
+    <p class="_9d-1"></p>
+    <input placeholder="Type, use onkeyup, display in sync" class="_9h"  onkeyup= "displayUp(this.value)">
+    <p class="_9h-1"></p>
+
+    <script>
+        // js code
+        // change everything inside the body to 'hola'
+        // document.body.innerHTML = 'hola';
+        // change the title
+        // document.title = 'Good Job!'
+        console.log(document.title);
+        console.log(document.body);
+        console.log(document.body.innerHTML); // control all html elements
+        // document.body.innerHTML = '<button> GJ!</button>'
+        // also replace it with html element, just inside ''
+
+        // qS example:
+        console.log(document.querySelector('button'));
+        console.log(document.querySelector('button').innerHTML);
+        document.querySelector('button').innerHTML = 'Modified';
+        // only 1st button got selected, use class!
+        document.querySelector('.js-btn').innerHTML = 'Modified 2';
+        console.log(document.querySelector('.js-btn'));
+        // use qS to take it and control it in JS.
+        const btn_element = document.querySelector('.js-btn');
+        console.log(btn_element);
+
+        // window element: page, console, popup all included, we normally just omit it.
+        window.document
+        window.console.log('this is window object')
+
+        // exercise09 ///////////////////////////
+        console.log('ex09: a-c ---------------------------------');
+        console.log(document.querySelector('._9a'));
+        document.querySelector('button').innerHTML = '9a and b done!';
+        console.log('ex09: d-f ---------------------------------');
+        function display() {
+            const input_element = document.querySelector('._9d');
+            document.querySelector('._9d-1').innerHTML = `Your name is: ${input_element.value}`;
+        }
+        console.log('ex09: g see dom-project---------------------------------');
+        function displayUp(text) {
+            document.querySelector('._9h-1').innerText = text;
+        }
+
+        console.log('ex09: i,j see cart quantity; calculator-project---------------------------------');
+
+
+    </script>
+</body>
+
+</html>

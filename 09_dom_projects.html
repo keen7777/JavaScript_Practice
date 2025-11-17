@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch09 Dom, a catalog for small projects </title>
+    <style>
+        /*css*/
+    </style>
+</head>
+
+<body>
+    <!--html -->
+    <p> Youtube Subscribe Button</p>
+    <button class="js-subscribe-btn" data-type="js-sub">Subscribe</button>
+    <!--if Subscribe then to Substribed, else reverse -->
+
+    <p> Rock Paper Scissors</p>
+    <a href="file://wsl.localhost/Ubuntu-24.04/home/keen/JavaScript_Practice/09_rock_paper_scissors_score_js_btn.html">Click
+        here </a>
+
+    <p>Amazon Shipping Calculator </p>
+    <p> Orders under $40 = +$10 shipping.</p>
+    <p> Orders under $40 = FREE shipping.</p>
+    <input placeholder="Cost of order" class="js-cost-input"> <button class="js-cal-btn" data-type="js-cal">Calculate</button>
+    <p class="js-total-cost"></p>
+    <a href="">CSS version of these projects </a>
+
+    <script>
+        // js code
+        // first subscribe:
+        function clickSubscribe(btn_element) {
+            if (btn_element.innerText === 'Subscribe') {
+                btn_element.innerText = 'Subscribed'
+            } else if (btn_element.innerText === 'Subscribed') {
+                btn_element.innerText = 'Subscribe'
+            }
+        }
+
+        function calculateTotal() {
+            const input_element = document.querySelector('.js-cost-input');
+            let price = Number(input_element.value).toFixed(2);
+            // use cent to calculate!
+            if (price*100 < 4000) {
+                price = (price*100 +1000)/100;
+            }
+            document.querySelector('.js-total-cost').innerHTML = `$ ${price}`;
+        }
+
+        // 2nd using event delegation ===================
+        document.body.addEventListener('click', (e) => {
+            const button = e.target.closest('button');
+            // only for buttons.
+            if (!button) {
+                return;
+            }
+
+            const type = button.dataset.type;
+
+            if (type === 'js-sub') {
+                // use inner text will ignore the surrounding spaces
+                const btn_element = document.querySelector('.js-subscribe-btn');
+                clickSubscribe(btn_element);
+            }
+
+            if (type === 'js-cal') {
+                calculateTotal();
+            }
+
+        }); // 2nd
+
+        //keydown logic:
+        document.body.addEventListener('keydown', (e) => {
+            // that's for all
+            // if (e.key === 'Enter') {
+            //    calculateTotal();}
+
+            const cal_btn = document.querySelector('.js-cal-btn');
+            if (e.key === 'Enter') {
+                cal_btn.click(); //recall the click button logic
+            }
+
+            // normally we have clicks, keydowns scroll, mouseenter... as events
+            // onclick, onkeydown,scrolling, hovering over... as event listeners
+
+
+        }); // 2nd
+
+    </script>
+</body>
+
+</html>

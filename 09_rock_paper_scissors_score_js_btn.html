@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title> Ch08 Objects: rock paper scissors </title>
+    <title> Ch09 Objects: rock paper scissors </title>
     <style>
         /*css*/
     </style>
@@ -10,24 +10,18 @@
 
 <body>
     <!--html -->
-    <p> <strong>Game Logic</strong>: <br>
-        as we click a button <br>
-        1: Computer randomly selects a move.<br>
-        1-1: use random number to generate a float between 0~1.<br>
-        1-2: use 1/3, 2/3 to distinguish 3 cases. if in corresponding interval then comouter chooses R/P/S.<br>
-        2: Compare the moves(user chosen one) to get the results.<br>
-        3: Display the result in a popup. <br>
-    </p>
-    <hr>
     <h3> Rock paper scissors </h3>
 
     <button data-action='move' data-user_move="rock"> Rock </button>
     <button data-action='move' data-user_move="paper"> Paper </button>
     <button data-action='move' data-user_move="scissors"> Scissors </button>
-    <button data-action='reset' id="reset-btn"> Reset Score</button>
     <!-- we need to add a button and then using it to update the score-->
     <div id="scoreboard">Wins: 0 | Losses: 0 | Ties: 0</div>
-
+    <p class="js-result"></p>
+    <p class="js-moves"></p>
+    <p class="js-moves2"></p>
+    <p class="js-score"></p>
+    <button data-action='reset' id="reset-btn"> Reset Score</button>
 
     <script>
         // js code
@@ -57,15 +51,6 @@
         let computer_move = '';
         const score = loadFromLocal('score', { wins: 0, losses: 0, ties: 0 });
 
-        // use local storage!!!
-        /*
-        const saved_score = localStorage.getItem('score');
-        if (saved_score) {
-            Object.assign(score, JSON.parse(saved_score));
-            // console.log(saved_score);
-        }
-        */
-
 
         // functions: 
         function getComputerMove() {
@@ -89,37 +74,30 @@
 
         function compareMoves(user_move, computer_move) {
             let result = '???';
-            // console.log('check user move');
-            // console.log(user_move);
 
-            // console.log('check computer move');
-            // console.log(computer_move);
-
-            // console.log('check 01');
-            // console.log(result);
             if (user_move === computer_move) {
-                result = `you both picked ${user_move}, Tie.`
+                result = `you both picked ${user_move}; Tie.`
                 return result;
             }
             // user rock case
             if (user_move === 'rock' && computer_move === 'paper') {
-                result = `you picked ${user_move}, computer picked ${computer_move}, You lose.`
+                result = `you picked ${user_move}, computer picked ${computer_move}; You lose.`
             } else if (user_move === 'rock' && computer_move === 'scissors') {
-                result = `you picked ${user_move}, computer picked ${computer_move}, You win.`
+                result = `you picked ${user_move}, computer picked ${computer_move}; You win.`
             }
 
             // user paper case
             if (user_move === 'paper' && computer_move === 'scissors') {
-                result = `you picked ${user_move}, computer picked ${computer_move}, You lose.`
+                result = `you picked ${user_move}, computer picked ${computer_move}; You lose.`
             } else if (user_move === 'paper' && computer_move === 'rock') {
-                result = `you picked ${user_move}, computer picked ${computer_move}, You win.`
+                result = `you picked ${user_move}, computer picked ${computer_move}; You win.`
             }
 
             // user scissors case
             if (user_move === 'scissors' && computer_move === 'rock') {
-                result = `you picked ${user_move}, computer picked ${computer_move}, You lose.`
+                result = `you picked ${user_move}, computer picked ${computer_move}; You lose.`
             } else if (user_move === 'scissors' && computer_move === 'paper') {
-                result = `you picked ${user_move}, computer picked ${computer_move}, You win.`
+                result = `you picked ${user_move}, computer picked ${computer_move}; You win.`
             }
 
             // console.log(result);
@@ -135,9 +113,6 @@
                 score.ties++;
             }
 
-            // console.log('what have i saved?')
-            // console.log(score);
-            // console.log(JSON.stringify(score));
             // set localstorage after each updates
             // localStorage.setItem('score', JSON.stringify(score));
             saveToLocal('score', score);
@@ -158,48 +133,22 @@
                 `Wins: ${score.wins} | Losses: ${score.losses} | Ties: ${score.ties}`;
         }
 
+        function renderScore2() {
+            document.querySelector('.js-score').innerHTML = `
+                Wins: ${score.wins} ~~~
+                Losses: ${score.losses} ~~~
+                Ties: ${score.ties}`;
+        }
+
+        function showResultMoves(result) {
+            const [moves, res = ''] = result.split(";");
+            document.querySelector('.js-result').innerHTML = `
+                ${res}`;
+            document.querySelector('.js-moves').innerHTML = `
+                ${moves}`;
+        }
+
         // binding logic
-        /*
-        const buttons = document.querySelectorAll("button");
-
-        // add events for each button
-        // TODO: use event delegation
-        buttons.forEach(button => {
-            button.addEventListener("click", () => {
-
-                
-                // get user move
-                const user_move = button.dataset.user_move;
-
-                //check if it's reset button:
-                if(!user_move){
-                    score.wins = 0;
-                    score.losses = 0;
-                    score.ties = 0;
-                    alert("Score has been reset to 0!");
-                    return; // nolonger go through the game logic
-                
-                }
-
-                // get computer move
-                computer_move = getComputerMove();
-
-                // get results
-                let result = compareMoves(user_move, computer_move);
-                updateScores(result);
-                // console.log(result);
-
-                // show result
-                alert(`${result}
-                Wins: ${score.wins} 
-                Losses: ${score.losses} 
-                Ties: ${score.ties}`);
-            });
-        }); 
-        */
-        // 1st version end===============================
-
-
         // 2nd using event delegation ===================
         document.body.addEventListener('click', (e) => {
             const button = e.target.closest('button');
@@ -213,6 +162,7 @@
             if (action === 'reset') {
                 resetScores();
                 renderScore();
+                renderScore2();
             }
 
             if (action === 'move') {
@@ -225,6 +175,15 @@
                 updateScores(result);
                 // console.log(result);
                 console.log(score);
+                // we get the result it's an JS object and directly put it into innerHtml above.
+                showResultMoves(result);
+                
+
+                console.log(user_move);
+                console.log(computer_move);
+                // so Simon use:
+                document.querySelector('.js-moves2').innerHTML = `!!! You pick ${user_move}, computer picks ${computer_move}`;
+                
 
                 // show result in popup
                 alert(`${result}
@@ -234,11 +193,13 @@
 
                 // keep a scoreboard:
                 renderScore();
+                renderScore2();
             }
         }); // 2nd
 
         //initialization: 
-        renderScore(); 
+        renderScore();
+        renderScore2();
     </script>
 </body>
 

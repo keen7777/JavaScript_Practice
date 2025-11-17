@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch08 Calculators </title>
+    <link rel="stylesheet" href="styles/05_calculator.css">
+</head>
+
+<body>
+    <!--html numbers-->
+    <section class="frame-div">
+        <div class="btn-div">
+            <button data-typ='number' data-num="1" class="num-btn"> 1 </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='number' data-num="2" class="num-btn"> 2 </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='number' data-num="3" class="num-btn"> 3 </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='operation' data-op="+" class="op-btn"> + </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='number' data-num="4" class="num-btn"> 4 </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='number' data-num="5" class="num-btn"> 5 </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='number' data-num="6" class="num-btn"> 6 </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='operation' data-op="-" class="op-btn"> - </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='number' data-num="7" class="num-btn"> 7 </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='number' data-num="8" class="num-btn"> 8 </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='number' data-num="9" class="num-btn"> 9 </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='operation' data-op="*" class="op-btn"> * </button>
+        </div>
+
+
+        <div class="btn-div">
+            <button data-typ='number' data-num="0" class="num-btn"> 0 </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='dot' data-dot="." class="dot-btn"> . </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='evaluation' data-eval="=" class="eq-btn"> = </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='operation' data-op="/" class="op-btn"> / </button>
+        </div>
+
+        <div class="btn-div">
+            <button data-typ='reset' data-op="clear" class="clear-btn"> Clear </button>
+        </div>
+
+
+    </section>
+    <script>
+        // js code
+        // storage layer:
+        function saveToLocal(key, cal) {
+            localStorage.setItem(key, cal);
+        }
+
+        function loadFromLocal(key, defaultValue = {}) {
+            const data = localStorage.getItem(key);
+            return data ? data : defaultValue;
+        }
+
+        function removeFromLocal(key) {
+            localStorage.removeItem(key);
+        }
+
+        function addingChar(s) {
+            calculation += s;
+            console.log(calculation);
+        }
+
+        function clearCalculation(s) {
+            calculation = '';
+            console.log(calculation);
+        }
+
+        function evaluateCalculation() {
+            calculation = eval(calculation);
+            console.log(calculation);
+        }
+
+
+
+        // variables:
+        let calculation = loadFromLocal('calculation', "");
+
+
+        // 2nd using event delegation ===================
+        document.body.addEventListener('click', (e) => {
+            const button = e.target.closest('button');
+            // only for buttons.
+            if (!button) {
+                return;
+            }
+
+            const current_type = button.dataset.typ;
+
+            // 
+
+            if (current_type === 'reset') {
+                clearCalculation();
+                removeFromLocal('calculation');
+            }
+
+            if (current_type === 'operation') {
+                const current_char = button.dataset.op;
+                addingChar(` ${current_char} `);
+                saveToLocal('calculation',calculation );
+            }
+
+            if (current_type === 'number') {
+                const current_char = button.dataset.num;
+                addingChar(current_char);
+                saveToLocal('calculation',calculation);
+            }
+
+            if (current_type === 'dot') {
+                const current_char = button.dataset.dot;
+                addingChar(current_char);
+                saveToLocal('calculation',calculation);
+            }
+
+
+            if (current_type === 'evaluation') {
+                evaluateCalculation();
+                saveToLocal('calculation',calculation);
+            }
+
+        }); // 2nd
+
+        //we still need to add some rules for that, especially after evaluation, the result, and the op rules. 
+
+    </script>
+</body>
+
+</html>
