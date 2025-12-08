@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch10 styles: rock paper scissors </title>
+    <link rel="stylesheet" href="styles/12_rock_paper_scissors_with_autoplay.css">
+    <style>
+        /*css*/
+    </style>
+</head>
+
+<body>
+    <!--html -->
+    <h3 class="title"> Rock paper scissors </h3>
+
+    <button data-action='move' data-user_move="rock" class="move-btn"> 
+        <img src="images/10-rock-emoji.png" class="move-icon"> 
+    </button>
+    <button data-action='move' data-user_move="paper" class="move-btn"> 
+        <img src="images/10-paper-emoji.png" class="move-icon"> 
+    </button>
+    <button data-action='move' data-user_move="scissors" class="move-btn"> 
+        <img src="images/10-scissors-emoji.png" class="move-icon"> 
+    </button>
+    <!-- we need to add a button and then using it to update the score-->
+    <p class="js-result result"></p>
+    <p class="js-moves"></p>
+    <p class="js-moves2"></p>
+    <div id="scoreboard" class="scoreboard">Wins: 0 | Losses: 0 | Ties: 0</div>
+    <button data-action='reset' id="reset-btn" class="reset-btn"> Reset Score</button>
+    <button data-action='autoplay' id="autoplay-btn" class="autoplay-btn"> Auto Play</button>
+
+    <script src="scripts/12_rock_paper_scissors_with_autoplay.js">
+        // js code, to load
+    </script>
+</body>
+
+</html>

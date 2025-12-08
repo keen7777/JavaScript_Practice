@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch11 arrays and loops </title>
+    <style>
+        /*css*/
+    </style>
+</head>
+
+<body>
+    <!--html -->
+    <h3> L11 Note(arrays and loops): </h3>
+    <p>
+        <strong>notes </strong><br>
+        1, arrays: represent a list of values. <br>
+        1-1, we can use <strong>index </strong> to modify a single value inside of an array. <br>
+        1-2, we can store different types of elements inside, array = a special type of objects<br>
+        1-3, has built=in methods, like length, push,splice<br>
+        <hr>
+        2, loop, for and while, we use for as standard loop<br>
+        2-1, break, exit a loop earlier; <br>
+        2-2, continue, skip one round of iteration, then continue 
+        <hr>
+        3, arrays and objects are both reference, so we only copy the address when using array1 =array 2<br>
+        3-1, we can make a copy by using slice<br>
+        
+    </p>
+
+    <script>
+        // js code
+        const my_array = [10, 20, 30];
+        console.log(my_array);
+        // using index
+        console.log(my_array[0]);
+        my_array[2] = 99;
+        console.log(my_array);
+
+        my_weird_array = [5, 'heyyy', {name: 'socks'}, [1,1,2,3,5]];
+        console.log(my_weird_array);  
+        console.log(typeof(my_weird_array));  
+        // check if array?
+        console.log(Array.isArray(my_weird_array));
+
+        my_weird_array.push(100);
+        console.log(`using push: ${my_weird_array}`); 
+        my_weird_array.splice(0,2);
+        console.log(`using splice, remove 2 values from index 0: ${my_weird_array}`); 
+
+        //loop parts:
+        let i = 1;
+        while (i <= 5){
+            console.log(`while loop count: ${i}`);
+            i++;
+        }
+
+        for (let j=1; j<=5; j++){
+            console.log(`for loop count: ${j}`);
+        }   
+
+        let random_number = 0
+        while (random_number<= 0.5){
+            random_number = Math.random();
+            console.log(`while loop count: random number ${random_number}`);
+        }
+
+        // loop through an array
+        const loop_array = [3,5,7,9,11];
+        for (let index=0; index<loop_array.length; index++){
+            console.log(`loop through array value: index ${index} value ${loop_array[index]}`);
+        }
+
+        console.log(`accumulate pattern, e.g: sum of array values: `);
+        let sum = 0;
+        for (let index=0; index<loop_array.length; index++){
+            sum += loop_array[index];
+        }
+        console.log(`Sum of array values: ${sum}`);
+        console.log(`double each array value: `);
+        const doubled_array = [];
+        for (let i=0; i<loop_array.length; i++){
+            doubled_array.push(loop_array[i]*2);
+        }
+        console.log(`Doubled array values: ${doubled_array}`);
+
+        // exercise11:
+        console.log(`----------------------------------------------`);
+        console.log(`Ex11: (b) get last value`);
+        function getLastValue(array) {
+            const last_element = array[array.length-1];
+            return last_element;
+        }
+        console.log(`the last element of your array is ${getLastValue([1,2,3,4,99])}`);
+
+        console.log(`Ex11: (c) swap`);
+        function swapHeadTail(array) {
+            const first_element = array[0];
+            const last_element = array[array.length-1];
+            array[0] = last_element;
+            array[array.length-1] = first_element;
+            return array;
+        }
+
+
+        console.log(`original array is ${([1,2,3,4,99])}`);
+        let swapped_array = swapHeadTail([1,2,3,4,99]);
+        console.log(`swapped array is ${swapped_array}`);
+
+        console.log(`Ex11: (d-k) skip`);
+
+        const array1 = [1,2,3,42];
+        const array2 = array1.slice();
+        array2.push(999);
+        console.log(`array 1 is ${array1}`);
+        console.log(`array 2 is ${array2}`);
+        // shortcut, getting value out of array:
+        const [first_value, second_value] = [11,22,33];
+        console.log(`1st value ${first_value}, 2nd value ${second_value}`);
+
+
+        for (let index = 0; index < 11; index++) {
+            console.log(`break at 6, count to ${index}`); 
+            if (index === 6) {
+                break;
+            }
+            
+        }
+
+        for (let index = 0; index < 11; index++) {
+            if (index === 6) {
+                console.log(`inside continue at 6, count to ${index}`);
+                continue;  
+            }
+            console.log(`continue at 6, count to ${index}`);
+        }
+
+        i = 0 ;
+
+        while (i<11) {
+            if ( i % 5 === 0) {
+                i++;
+                continue;
+            }
+            console.log(`while loop count: ${i}`);
+            i++;
+        }
+
+        const test_array = [1,3,5,7];
+        function doubleArrayValue(loop_array) {
+            for (let i=0; i<loop_array.length; i++){
+            loop_array[i] = loop_array[i]*2;
+
+        }
+        }
+        doubleArrayValue(test_array);
+        console.log(`double array value ${test_array}`)
+
+    </script>
+</body>
+
+</html>

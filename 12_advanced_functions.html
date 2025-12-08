@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch12 advanced functions </title>
+    <style>
+        /*css*/
+    </style>
+</head>
+
+<body>
+    <!--html -->
+    <h3> L12 advanced function Note: </h3>
+    <p>
+        <strong></strong><br>
+        1, functions are just type of value, we can store it inside a variable<br>
+        1-1, <strong>fun1=fun2</strong>, we don't need a name for that, fun2 an <strong>anonymous</strong> function <br>
+        1-2, but we still prefer the most commen way, bc it can <strong>Hoisting</strong>, call it before defined it.<br>
+        1-3, we can save a function(value) in an object.<br>
+        1-4, we can pass a value into a funtion.<br>
+        1-5, <br>
+        <hr>
+        2, some built in functions<br>
+        2-1, setTimeOut(fun,time); setInterval <br>
+        2-2, Asynchronous Code, computer won't wait for a line to finish before going to the next line. (Synchronous otherwise, mostly by default if we don't use setTimeout...) <br>
+        2-3, Asynchronous <strong>Pros</strong>: no need to wait, won't block other code.
+    </p>
+
+    <script>
+        function greeting(name = 'stranger') {
+            console.log(`hola, ${name}`);
+        }
+        // a short cut for:
+        var greeting1 = function (name = 'stranger') {
+            console.log(`hola, ${name}`);
+        }
+
+        greeting();
+
+        const fun1 = function greeting() {
+            console.log(`hola,1, wrap it up!`);
+        }
+
+        const fun2 = function () {
+            console.log(`hola,2, wrap it up!`);
+        }
+
+        console.log(fun1);
+        console.log(typeof fun1);
+        fun1();
+        // into objects:
+        const object1 = {
+            number: 42,
+            fun: function greeting3() {
+               console.log(`hola,3`); 
+            }
+        };
+
+        // here it's a method
+        object1.fun();
+        greeting('John');
+
+        // weird nesting: call back functions
+        function run(params) {
+            params();
+        }
+
+        run(function () {
+            console.log('hola,4');
+        });
+
+        // some built in functions:
+        // take 2 parameters, fun, time(milisecond)
+        setTimeout(function () {
+            console.log('wait 3 seconds!');
+            console.log('then we go!');
+        }, 3000);
+        // so nextline will display first than the setTimeout
+        console.log('next line');
+
+        setInterval(function () {
+            console.log('every 30 seconds!');
+            console.log('booom!!!');
+        }, 30000);
+
+    </script>
+</body>
+
+</html>

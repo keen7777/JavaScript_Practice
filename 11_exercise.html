@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch11 arrays and loops(part 2)  </title>
+        <style>
+            /*css*/
+        </style>
+</head>
+
+<body>
+    <!--html -->
+    <h3> Ex11,part 2(o-v) </h3>
+    <p>
+    </p>
+
+    <script>
+        // js code
+        console.log(`__________Ex11: (o-q) check if search is inside of an array, give first appearing index, or -1 for not found`);
+        const array_has_search = ['hello','world','search','good','search'];
+        const array_no_search = ['hello','world','good'];
+        function searchForWordIndex(array, str) {
+            let location_idx = -1;
+            for (let idx = 0; idx < array.length; idx++) {
+                const element = array[idx];
+                if (element === str) {
+                    location_idx = idx;
+                    break;
+                }
+            }
+
+            return console.log(`the word ${str} is in index ${location_idx}`);
+        }
+
+        searchForWordIndex(array_has_search, 'search');
+        searchForWordIndex(array_has_search, '???');
+
+        console.log(`___________Ex11: (r-u) remove 'egg' from array, and return a clean array`);
+        const array_has_eggs = ['hello','world','egg','search','good','search', 'egg', 'egg'];
+        function removeFromArray(array, str, number = -1) {
+            let clean_array = [];
+            let cnt = 0;
+            for (let idx = 0; idx < array.length; idx++) {
+                const element = array[idx];
+                if (element === str && (cnt < number || number < 0)) {
+                    cnt++;
+                    continue;
+                }
+                clean_array.push(element);
+            }
+
+            return console.log(`the clean_array after removing "${number}" times of "${str}" is: ${clean_array}`);
+        }
+
+        removeFromArray(array_has_eggs, 'egg');
+        removeFromArray(array_has_eggs, 'egg', 2);
+        console.log(`original array is: ${array_has_eggs}`);
+
+        function removeFromArrayReverse(array, str, number = -1) {
+            // that's a shallow copy.
+            const array_res = array.slice();
+            array_res.reverse();
+            let clean_array = [];
+            let cnt = 0;
+            for (let idx = 0; idx < array_res.length; idx++) {
+                const element = array_res[idx];
+                if (element === str && (cnt < number || number < 0)) {
+                    cnt++;
+                    continue;
+                }
+                clean_array.push(element);
+            }
+            clean_array.reverse();
+            return console.log(`(reverse version)the clean_array after removing "${number}" times of "${str}" is: ${clean_array}`);
+        }
+        removeFromArrayReverse(array_has_eggs, 'egg', 1);
+        console.log(`original array is: ${array_has_eggs}`);
+
+
+        console.log(`___________Ex11: (v) fizz buzz, if %3=0, fizz, if %5=0, buzz, if both then fizzbuzz`);
+        const array_num = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20];
+        function fizzBuzz(array) {
+            let clean_array = [];
+            for (let idx = 0; idx < array.length; idx++) {
+                const element = array[idx];
+                if (element % 3 === 0 && element % 5 === 0 ) {
+                    clean_array.push('FizzBuzz');
+                    continue;
+                }
+                if (element % 3 === 0) {
+                    clean_array.push('Fizz');
+                    continue;
+                }
+                if (element % 5 === 0 ) {
+                    clean_array.push('Buzz');
+                    continue;
+                }
+                clean_array.push(element);
+            }
+
+            return console.log(`the clean_array after FizzBuzz is: ${clean_array}`);
+        }
+        fizzBuzz(array_num);
+
+        console.log(`___________Ex11: (w) remove duplicate, not using set`);
+        function findIndex(array, word) {
+        for (let i = 0; i < array.length; i++) {
+          if (array[i] === word) {
+            return i;
+          }
+        }
+
+        return -1;
+      }
+
+      function unique(array) {
+        const result = [];
+
+        for (let i = 0; i < array.length; i++) {
+          const word = array[i];
+
+          // Using the findIndex() function from above, we
+          // can check if the string is already in the
+          // result array. If it's not in the result array
+          // (index is -1), then add it to the result array.
+          if (findIndex(result, word) === -1) {
+            result.push(word);
+          }
+        }
+
+        return result;
+      }
+
+      console.log(unique(['green', 'red', 'blue', 'red']));
+
+    </script>
+</body>
+
+</html>
