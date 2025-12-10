@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Final: Rock Paper Scissors </title>
+    <link rel="stylesheet" href="styles/12_rock_paper_scissors_final_version.css">
+    <style>
+        /*css is above*/
+        /* Final version
+            1, adding refined keydown logic, parallal to the click.
+            2, make a rule table to replace the if-else statements
+            3, a clearer structure for the whole project
+            4, 12-exercise, adding confirm message when reset
+        */
+    </style>
+</head>
+
+<body>
+    <!--html -->
+    <h3 class="title"> Rock Paper Scissors </h3>
+
+    <button data-action='move' data-user_move="rock" class="move-btn"> 
+        <img src="images/10-rock-emoji.png" class="move-icon"> 
+    </button>
+    <button data-action='move' data-user_move="paper" class="move-btn"> 
+        <img src="images/10-paper-emoji.png" class="move-icon"> 
+    </button>
+    <button data-action='move' data-user_move="scissors" class="move-btn"> 
+        <img src="images/10-scissors-emoji.png" class="move-icon"> 
+    </button>
+    <!-- we need to add a button and then using it to update the score-->
+    <p class="js-result result"></p>
+    <p class="js-moves"></p>
+    <p class="js-moves2"></p>
+    <div id="scoreboard" class="scoreboard">Wins: 0 | Losses: 0 | Ties: 0</div>
+    <button data-action='reset' id="reset-btn" class="reset-btn"> Reset Score</button>
+    <button data-action='autoplay' id="autoplay-btn" class="autoplay-btn"> Auto Play</button>
+
+    <script src="scripts/12_rock_paper_scissors_final_version.js">
+        // js code, to load
+    </script>
+</body>
+
+</html>

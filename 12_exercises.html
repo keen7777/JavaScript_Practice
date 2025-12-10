@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch12 advanced functions </title>
+
+    <style>
+        /*css*/
+    </style>
+</head>
+
+<body>
+    <!--html -->
+    <h3> L12 advanced function Exercises: </h3>
+    <button class="12c-btn js-12c-btn">Start</button>
+    <button class="12e-btn js-12e-btn">Add to cart</button>
+    <p class="12g-msg js-12g-msg"></p>
+    <button class="12h-btn js-12h-add-btn">Add</button>
+    <button class="12h-btn js-12h-remove-btn">Remove</button>
+    <script>
+        // js code
+        console.log(`__________Ex12: (a-b) run twice`);
+        const add = function () {
+            console.log(2 + 3);
+        }
+
+        function runTwice(fun) {
+            fun();
+            fun();
+        }
+        runTwice(add);
+
+        console.log(`__________Ex12: (c-d) a button, clicked, 1s after from start to finished`);
+        console.log(`__________Ex12: (e-f) a button, clicked, show message 'added' below,after 2s msg deleted`);
+        let timeout_id;
+
+        console.log(`__________Ex12: (g) changing title every 1 s`);
+        let is_new_msg = false;
+        const app_title = 'App';
+        let msg_cnt = 2;
+        function changeTitle() {
+            setInterval(() => {
+                if (!is_new_msg && msg_cnt > 0) {
+                    document.title = `(${msg_cnt}) New messages`;
+                    is_new_msg = true;
+                } else {
+                    document.title = `${app_title}`;
+                    is_new_msg = false;
+                }
+            }, 1000);
+        }
+
+        changeTitle();
+
+        console.log(`__________Ex12: (h) add and remove button for message number`);
+        console.log(`__________Ex12: (i) msg number = 0, don't change`);
+        // all events for buttons
+
+        document.body.addEventListener('click', (e) => {
+            const button = e.target.closest('button');
+            // only for buttons.
+            if (!button) {
+                return;
+            }
+
+            if (button.classList.contains('12c-btn')) {
+                document.querySelector('.js-12c-btn').innerText = `Loading...`;
+                setTimeout(() => {
+                    document.querySelector('.js-12c-btn').innerText = `Finished!`;
+                }, 1000);
+            }
+
+            // put timeout-id outside of click event scoop, then clear it before running the setTimeout.
+            if (button.classList.contains('12e-btn')) {
+                document.querySelector('.js-12e-msg').innerHTML = `Added`
+                clearTimeout(timeout_id);
+                timeout_id = setTimeout(() => {
+                    document.querySelector('.js-12e-msg').innerHTML = ``;
+                }, 2000);
+            }
+
+            //add,remove logic for 12h
+
+            if (button.classList.contains('12h-btn')) {
+                if (button.classList.contains('js-12h-add-btn')) {
+                    msg_cnt++;
+                }
+                if (button.classList.contains('js-12h-remove-btn')) {
+                    if (msg_cnt > 0) {
+                        msg_cnt--;
+                    }
+
+                }
+            }
+
+
+
+
+
+        });
+
+
+
+
+    </script>
+</body>
+
+</html>

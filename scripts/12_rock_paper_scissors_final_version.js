@@ -53,29 +53,20 @@ function compareMoves(user_move, computer_move) {
         result = `you both picked ${user_move}; Tie.`
         return result;
     }
-    // user rock case
-    if (user_move === 'rock' && computer_move === 'paper') {
-        result = `you picked ${user_move}, computer picked ${computer_move}; You lose.`
-    } else if (user_move === 'rock' && computer_move === 'scissors') {
-        result = `you picked ${user_move}, computer picked ${computer_move}; You win.`
-    }
+    // replace it with win rules table:
+    // it's an object, map to each winRules
+    const winRules = {
+        rock: 'scissors',
+        paper: 'rock',
+        scissors: 'paper'
+    };
 
-    // user paper case
-    if (user_move === 'paper' && computer_move === 'scissors') {
-        result = `you picked ${user_move}, computer picked ${computer_move}; You lose.`
-    } else if (user_move === 'paper' && computer_move === 'rock') {
-        result = `you picked ${user_move}, computer picked ${computer_move}; You win.`
+    if (winRules[user_move] === computer_move) {
+        return `you picked ${user_move}, computer picked ${computer_move}; You win.`;
+    } else {
+        return `you picked ${user_move}, computer picked ${computer_move}; You lose.`;
     }
-
-    // user scissors case
-    if (user_move === 'scissors' && computer_move === 'rock') {
-        result = `you picked ${user_move}, computer picked ${computer_move}; You lose.`
-    } else if (user_move === 'scissors' && computer_move === 'paper') {
-        result = `you picked ${user_move}, computer picked ${computer_move}; You win.`
-    }
-
     // console.log(result);
-    return result;
 }
 
 function updateScores(result) {
@@ -107,12 +98,6 @@ function renderScore() {
         `Wins: ${score.wins} | Losses: ${score.losses} | Ties: ${score.ties}`;
 }
 
-function renderScore2() {
-    document.querySelector('.js-score').innerHTML = `
-                Wins: ${score.wins} ~~~
-                Losses: ${score.losses} ~~~
-                Ties: ${score.ties}`;
-}
 
 function showResultMoves(result) {
     const [moves, res = ''] = result.split(";");
@@ -125,24 +110,24 @@ function showResultMoves(result) {
 //playgame logic to refactor code:
 // the one round logic:
 function playGame(user_move) {
-        // get computer move
-        computer_move = getComputerMove();
-        // get results
-        let result = compareMoves(user_move, computer_move);
-        updateScores(result);
-        // console.log(result);
-        console.log(score);
-        // we get the result it's an JS object and directly put it into innerHtml above.
-        showResultMoves(result);
+    // get computer move
+    computer_move = getComputerMove();
+    // get results
+    let result = compareMoves(user_move, computer_move);
+    updateScores(result);
+    // console.log(result);
+    console.log(score);
+    // we get the result it's an JS object and directly put it into innerHtml above.
+    showResultMoves(result);
 
-        // console.log(user_move);
-        // console.log(computer_move);
-        // so Simon use:
-        document.querySelector('.js-moves2').innerHTML = `
+    // console.log(user_move);
+    // console.log(computer_move);
+    // so Simon use:
+    document.querySelector('.js-moves2').innerHTML = `
                 You pick <img src="images/10-${user_move}-emoji.png" class="move-icon"> , 
                 computer picks <img src="images/10-${computer_move}-emoji.png" class="move-icon">
                 `;
-        renderScore();
+    renderScore();
 }
 
 // add autoplay logic:
@@ -163,8 +148,8 @@ function autoPlay() {
     }
 }
 
-// binding logic
-// 2nd using event delegation ===================
+// binding logic event delegation ===================
+// click event:
 document.body.addEventListener('click', (e) => {
     const button = e.target.closest('button');
     // only for buttons.
@@ -188,7 +173,31 @@ document.body.addEventListener('click', (e) => {
     if (action === 'autoplay') {
         autoPlay();
     }
-}); // 2nd
+}); // click event listener, end
 
-//initialization: 
+// keydown event:
+document.body.addEventListener('keydown', (e) => {
+    const key = e.key.toLowerCase();
+    if (key === 'a') {
+        autoPlay();
+
+    } else if (key === 'r') {
+        playGame('rock');
+
+    } else if (key === 'p') {
+        playGame('paper');
+
+    } else if (key === 's') {
+        playGame('scissors');
+    } else if (key === 'x') {
+        resetScores();
+        renderScore();
+    }
+
+}); // keydown event listener, end
+
+
+
+
+
 renderScore();

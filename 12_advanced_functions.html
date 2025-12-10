@@ -18,12 +18,20 @@
         1-2, but we still prefer the most commen way, bc it can <strong>Hoisting</strong>, call it before defined it.<br>
         1-3, we can save a function(value) in an object.<br>
         1-4, we can pass a value into a funtion.<br>
-        1-5, <br>
         <hr>
         2, some built in functions<br>
         2-1, setTimeOut(fun,time); setInterval <br>
         2-2, Asynchronous Code, computer won't wait for a line to finish before going to the next line. (Synchronous otherwise, mostly by default if we don't use setTimeout...) <br>
-        2-3, Asynchronous <strong>Pros</strong>: no need to wait, won't block other code.
+        2-3, Asynchronous <strong>Pros</strong>: no need to wait, won't block other code.<br>
+        2-4, modify rps game, autoplay mode, using set,clearInterval via its id.<br>
+        <hr>
+        3, Loop, forEach:<br>
+        3-1, forEach is easier to read than classic for/while loop, has value and index as parameters.<br>
+        3-2, modify todolist into forEach loop.
+        <hr>
+        <strong>(Part 2) </strong> <br>
+        4, arrow functions: have some shortcuts
+
     </p>
 
     <script>
@@ -78,10 +86,50 @@
         // so nextline will display first than the setTimeout
         console.log('next line');
 
+        /*
         setInterval(function () {
             console.log('every 30 seconds!');
             console.log('booom!!!');
         }, 30000);
+        */
+
+        [
+            'make dinner',
+            'wash dishes',
+            'watch youtube'
+        ].forEach( (value, idx) =>{
+            if (value === 'wash dishes') {
+                return;
+                // work as continue
+                // using oneline function
+            }
+            console.log(`this is the No.${idx+1} value inside this array: ${value}`);
+        })
+
+        // Part2 ++++++++++++++++++++++++++
+        const arrowFunction = () => {
+            console.log('hey, this is an arrow function.');
+        }
+        arrowFunction();
+
+        const oneParam = param => {
+            console.log(param + 1);
+        }
+        oneParam(41);
+
+        // we can remove the {} and the return statement.
+        const oneLine = () => 2 + 4;
+        console.log(`this is oneline function: ${oneLine()}`);
+
+        // inside an object:
+        const object2 = {
+            method1 : () => {
+                console.log(`method1 inside object2, an arrow function`);
+            },   
+            method(){
+                console.log(`method2 inside object2, a different shortcut for arrow function`);
+            }
+        }
 
     </script>
 </body>
