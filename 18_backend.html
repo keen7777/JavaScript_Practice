@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> Ch18: Backend, Promises, Async await </title>
+    <style>
+        /*css*/
+    </style>
+</head>
+
+<body>
+    <!--html -->
+    <h3> L18 Exercises: </h3>
+    <p>
+        <strong> :</strong><br>
+        1, <br>
+        1-1, <strong>fixed</strong>, <br>
+        1-2, <br>
+        1-3, <br>
+        1-4, <br>
+        1-5, <br>
+        <hr>
+        2, <br>
+    </p>
+    <hr>
+
+    <script src="scripts/18_backend.js"></script>
+    <script>
+        // js code 
+        // e18.a: XML request:  
+        console.log(`e18a: a XML greeting request`);
+        function getRequestXML(name = 'John') {
+            const xhr = new XMLHttpRequest();
+            xhr.addEventListener('load', () => {
+                console.log(`${name}, ${xhr.response}, XML^^.`);
+            });
+
+            // add a seperate callback for error handle
+            xhr.addEventListener('error', () => {
+                console.log('XHR: unexpected error. Please try again later')
+            });
+
+            xhr.open('GET', 'https://supersimplebackend.dev/greeting');
+            xhr.send();
+        }
+        getRequestXML();
+
+        // e18.b: fetch request:  
+        console.log(`e18b: a Promise greeting request`);
+        function getRequestPromise(name = 'John') {
+            const promise = fetch(
+                'https://supersimplebackend.dev/greeting'
+            ).then((response) => {
+                return response.text();
+
+            }).then((text) => {
+                console.log(`${name}, ${text}, Promise^^.`);
+            }).catch((error) => {
+                // use catch for error in promise
+                console.log('Fetch: unexpected error. Please try again later')
+                console.log(error);
+            });
+            return promise;
+        }
+        getRequestPromise('Sherlock');
+
+        // e18.c: promise, await:
+        console.log(`e18c: async/await greeting request`);
+        async function getRequestAsync(name = 'John') {
+            try {
+                const response = await fetch('https://supersimplebackend.dev/greeting');
+                const text = await response.text();
+                console.log(`${name}, ${text}, async/await^^.`);
+            } catch (error) {
+                console.log('Fetch and async: unexpected error. Please try again later');
+                console.log(error);
+            }
+        }
+        getRequestAsync('Mary');
+
+        // e18.d: promise, await, using POST, create a greeting with name
+        console.log(`e18d: async/await greeting request, with POST`);
+        async function postRequestAsync(name = 'John') {
+            try {
+                const response = await fetch('https://supersimplebackend.dev/greeting', {
+                    method: 'POST',
+                    // header gives the backend more info about our request
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name
+                    })
+                });
+                const text = await response.text();
+                console.log(`${text}, async/await,POST ^^.`);
+            } catch (error) {
+                console.log('Fetch and async,POST: unexpected error. Please try again later');
+                console.log(error);
+            }
+        }
+        postRequestAsync('Liz');
+
+        // e18.e: promise, await with amazong 
+        console.log(`e18e: async/await greeting request, with amazon`);
+        async function getRequestAsyncAmazon(name = 'John') {
+            try {
+                const response = await fetch('https://amazon.com');
+                const text = await response.text();
+                console.log(`${name}, ${text}, async/await^^.`);
+            } catch (error) {
+                console.log('Fetch and async: Amazon: CORS error, your request was blocked by the backend.');
+                console.log(error);
+            }
+        }
+        getRequestAsyncAmazon('AMAZON');
+
+
+        // e18.g: promise, await, using POST, create a greeting with name
+        console.log(`e18g: create error, with POST`);
+        async function postRequestAsyncError(name = 'John') {
+            try {
+                const response = await fetch('https://supersimplebackend.dev/greeting', {
+                    method: 'POST',
+                    // header gives the backend more info about our request
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                const status = response.status;
+                if (status >= 400) {
+                    throw response;
+                }
+                const text = await response.text();
+                console.log(text);
+            } catch (error) {
+                if (error.status === 400) {
+                    const errorMessage = await error.json();
+                    console.log(errorMessage);
+                    console.log('400');
+                } else {
+                    console.log('Manuel create error not working, but Network error. Please try again later.');
+                }
+            }
+        }
+        postRequestAsyncError('Erik');
+
+
+
+    </script>
+</body>
+
+</html>

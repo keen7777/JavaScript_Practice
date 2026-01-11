@@ -1,11 +1,13 @@
 const todo_list = [];
+console.log("JS loaded", document.querySelector('.js-todo-list'));
 
 
 // this function is to generating the html
+
 function renderTodoList() {
     let todo_list_html = '';
     // for each
-    todo_list.forEach( (todo_object, index) => {
+    todo_list.forEach((todo_object, index) => {
         const html_todo = `
         <div> ${todo_object.name} </div>
         <div> ${todo_object.dueDate} </div>
@@ -18,6 +20,25 @@ function renderTodoList() {
     document.querySelector('.js-todo-list').innerHTML = todo_list_html;
 }
 
+/*
+function renderTodoList() {
+    let html = '';
+
+    todo_list.forEach((todo, index) => {
+        html += `
+        <div class="todo-gird">
+            <div class="todo-name">${todo.name}</div>
+            <div class="todo-date">${todo.dueDate}</div>
+            <button class="delete-todo-btn" data-index="${index}">Delete</button>
+        </div>
+        `;
+    });
+
+    document.querySelector('.js-todo-list').innerHTML = html;
+}
+*/
+
+
 
 function addTodo() {
     const input_name = document.querySelector('.js-name-input');
@@ -29,7 +50,8 @@ function addTodo() {
     if (todo_name != '') {
         todo_list.push({
             name: todo_name,
-            dueDate: todo_due_date}
+            dueDate: todo_due_date
+        }
         );
         // console.log(todo_list);
     }
@@ -65,6 +87,10 @@ document.body.addEventListener('click', (e) => {
         const idx = Number(button.dataset.index);
         deleteTodo(idx);
     }
+});
 
-
-}); 
+// use enter to submit new todo item.
+document.querySelector('.js-name-input')
+    .addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') addTodo();
+    });
